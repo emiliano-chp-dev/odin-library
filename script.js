@@ -81,6 +81,10 @@ function main() {
     updateDisplay(bookShelf);
   }
 
+  function findBookByID(bookID) {
+    return bookShelf.find(el => el.bookID === bookID);
+  }
+
   function attachHandlers() {
     modalBtns.map(el => {
       el.addEventListener('click', toggleModalVisibility);
