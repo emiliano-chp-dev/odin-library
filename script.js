@@ -8,6 +8,7 @@ function main() {
     document.querySelector('.btn-add-book'),
     document.querySelector('.close-modal'),
   ];
+  const cardFormElement = document.querySelector('.card.card-form');
   const inputElements = [
     ...document.querySelectorAll('.modal .card.card-form li input'),
     document.querySelector('.modal .card.card-form li select'),
@@ -51,6 +52,15 @@ function main() {
 
   function toggleModalVisibility() {
     modalElement.classList.toggle('open');
+  }
+
+  function closeModalOnClickOutside(e) {
+    if (
+      modalElement.classList.contains('open') &&
+      !cardFormElement.contains(e.target)
+    ) {
+      toggleModalVisibility();
+    }
   }
 
   function Book(title, author, pubYear, pages, status) {
@@ -126,9 +136,13 @@ function main() {
   }
 
   function attachHandlers() {
-    modalBtns.map(el => {
-      el.addEventListener('click', toggleModalVisibility);
+    modalBtns.map(btn => {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleModalVisibility();
+      });
     });
+    document.addEventListener('click', closeModalOnClickOutside);
     insertBookBtn.addEventListener('click', insertBook);
     bookContainerElement.addEventListener('click', function (e) {
       if (e.target.closest('.btn-status')) {
