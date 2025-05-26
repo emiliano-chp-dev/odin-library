@@ -8,7 +8,12 @@ function main() {
     document.querySelector('.btn-add-book'),
     document.querySelector('.close-modal'),
   ];
+  const submitBookBtn = document.querySelector('.btn-submit-book');
 
+  // Helper elements
+  const bookShelves = [];
+
+  // Functions
   function toggleModalVisibility() {
     modalElement.classList.toggle('open');
   }
@@ -39,6 +44,26 @@ function main() {
     bookContainerElement.insertAdjacentHTML('beforeend', markdown);
   }
 
+  function insertBook(e) {
+    e.preventDefault();
+    const bookTitleElement = document.querySelector('#book-title');
+    const bookAuthorElement = document.querySelector('#book-author');
+    const bookPubYearElement = document.querySelector('#book-publish-year');
+    const bookPagesElement = document.querySelector('#book-pages');
+    const bookStatusElement = document.querySelector('#book-status');
+
+    bookShelves.push({
+      bookTitle: `${bookTitleElement.value}`,
+      bookAuthor: `${bookAuthorElement.value}`,
+      bookPubYear: `${bookPubYearElement.value}`,
+      bookPageElement: `${bookPagesElement.value}`,
+      bookStatus: `${bookStatusElement.value}`,
+    });
+
+    displayBook(bookShelves[bookShelves.length - 1]);
+    console.log(bookShelves[bookShelves.length - 1]);
+  }
+
   function attachHandlers(arr) {
     arr.map(el => {
       el.addEventListener('click', toggleModalVisibility);
@@ -47,6 +72,7 @@ function main() {
 
   //   displayBook(bookExample);
   attachHandlers(modalBtns);
+  submitBookBtn.addEventListener('click', insertBook);
 }
 
 main();
