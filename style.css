@@ -99,6 +99,29 @@ body {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
+h1 {
+  font-size: var(--fs-xl);
+}
+
+h2 {
+  font-size: var(--fs-l);
+}
+
+h3 {
+  font-size: var(--fs-md);
+}
+
+h4 {
+  font-size: var(--fs-s);
+}
+
+h5 {
+  font-size: var(--fs-xs);
+}
+s p {
+  font-size: var(--fs-min);
+}
+
 ul {
   list-style: none;
 }
@@ -115,12 +138,22 @@ button {
 
 /* SEMANTIC ELEMENTS */
 header {
-  padding-left: var(--sz-lg);
+  padding: var(--sz-min) var(--sz-lg);
   display: flex;
   align-items: center;
   gap: var(--sz-s);
+  gap: var(--sz-s);
+  background-color: var(--fg-main);
+  color: var(--bg-main);
 }
 
 /* INDIVIDUAL ELEMENTS */
+header > * {
+  font-weight: var(--fw-slim);
+}
+
+header i {
+  font-size: var(--fs-md);
+}
 
 /* UTILITIES */
