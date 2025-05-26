@@ -8,11 +8,10 @@ function main() {
     document.querySelector('.btn-add-book'),
     document.querySelector('.close-modal'),
   ];
-  const bookTitleElement = document.querySelector('#book-title');
-  const bookAuthorElement = document.querySelector('#book-author');
-  const bookPubYearElement = document.querySelector('#book-publish-year');
-  const bookPagesElement = document.querySelector('#book-pages');
-  const bookStatusElement = document.querySelector('#book-status');
+  const inputElements = [
+    ...document.querySelectorAll('.modal .card.card-form li input'),
+    document.querySelector('.modal .card.card-form li select'),
+  ];
   const insertBookBtn = document.querySelector('.btn-submit-book');
 
   // Helper elements
@@ -64,27 +63,29 @@ function main() {
   }
 
   function createBook() {
-    const title = bookTitleElement.value;
-    const author = bookAuthorElement.value;
-    const pubYear = bookPubYearElement.value;
-    const pages = bookPagesElement.value;
-    const status = bookStatusElement.value;
+    const [title, author, pubYear, pages, status] = inputElements.map(
+      el => el.value
+    );
 
     const newBook = new Book(title, author, pubYear, pages, status);
 
     return newBook;
   }
 
+  function checkFormInputs() {
+    return inputElements.some(el => el.value.trim() === '');
+  }
+
   function clearFormInputs() {
-    bookTitleElement.value = '';
-    bookAuthorElement.value = '';
-    bookPubYearElement.value = '';
-    bookPagesElement.value = '';
-    bookStatusElement.value = '';
+    inputElements.map(el => (el.value = ''));
   }
 
   function insertBook(e) {
     e.preventDefault();
+    if (checkFormInputs()) {
+      alert('Please fill out the form.');
+      return;
+    }
     bookShelf.push(createBook());
     updateDisplay(bookShelf);
     clearFormInputs();
