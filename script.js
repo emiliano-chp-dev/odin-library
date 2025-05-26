@@ -13,13 +13,13 @@ function main() {
     modalElement.classList.toggle('open');
   }
 
-  const bookExample = {
-    bookTitle: 'The Hobbit',
-    bookAuthor: 'J. R. R. Tolkien',
-    bookPubYear: 1937,
-    bookPages: 321,
-    bookStatus: 'unread',
-  };
+  //   const bookExample = {
+  //     bookTitle: 'The Hobbit',
+  //     bookAuthor: 'J. R. R. Tolkien',
+  //     bookPubYear: 1937,
+  //     bookPages: 321,
+  //     bookStatus: 'unread',
+  //   };
 
   function displayBook(book) {
     const { bookTitle, bookAuthor, bookPubYear, bookPages, bookStatus } = book;
@@ -45,7 +45,7 @@ function main() {
     });
   }
 
-  displayBook(bookExample);
+  //   displayBook(bookExample);
   attachHandlers(modalBtns);
 }
 
