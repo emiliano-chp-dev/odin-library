@@ -147,6 +147,13 @@ header {
   color: var(--text-light);
 }
 
+footer {
+  padding: var(--sz-xxs) 0;
+  background-color: var(--fg-secondary);
+  text-align: center;
+  color: var(--text-dark);
+}
+
 /* INDIVIDUAL ELEMENTS */
 header > * {
   font-weight: var(--fw-slim);
@@ -154,6 +161,10 @@ header > * {
 
 header i {
   font-size: var(--fs-md);
+}
+
+footer a {
+  color: var(--text-dark);
 }
 
 /* UTILITIES */
