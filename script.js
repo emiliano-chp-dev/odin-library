@@ -16,9 +16,13 @@ function main() {
   const insertBookBtn = document.querySelector('.btn-submit-book');
 
   // Helper elements
-  const bookShelves = [];
+  const bookShelf = [];
 
   // Functions
+  function genBookID() {
+    return `book-${Date.now()}`;
+  }
+
   function updateDisplay(arr, displayAll = true) {
     if (!arr || arr.length === 0) return;
 
@@ -72,8 +76,8 @@ function main() {
 
   function insertBook(e) {
     e.preventDefault();
-    bookShelves.push(createBook());
-    updateDisplay(bookShelves);
+    bookShelf.push(createBook());
+    updateDisplay(bookShelf);
   }
 
   function attachHandlers() {
@@ -84,7 +88,7 @@ function main() {
   }
 
   // Function calls
-  updateDisplay(bookShelves);
+  updateDisplay(bookShelf);
   attachHandlers(modalBtns);
 }
 
