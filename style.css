@@ -144,7 +144,7 @@ header {
   gap: var(--sz-s);
   gap: var(--sz-s);
   background-color: var(--fg-main);
-  color: var(--bg-main);
+  color: var(--text-light);
 }
 
 /* INDIVIDUAL ELEMENTS */
