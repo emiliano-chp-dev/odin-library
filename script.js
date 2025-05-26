@@ -75,10 +75,19 @@ function main() {
     return newBook;
   }
 
+  function clearFormInputs() {
+    bookTitleElement.value = '';
+    bookAuthorElement.value = '';
+    bookPubYearElement.value = '';
+    bookPagesElement.value = '';
+    bookStatusElement.value = '';
+  }
+
   function insertBook(e) {
     e.preventDefault();
     bookShelf.push(createBook());
     updateDisplay(bookShelf);
+    clearFormInputs();
   }
 
   function findBookByID(bookID) {
