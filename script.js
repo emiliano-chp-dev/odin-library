@@ -23,9 +23,9 @@ function main() {
   }
 
   function updateDisplay(arr, displayAll = true) {
-    if (!arr || arr.length === 0) return;
-
     bookContainerElement.innerHTML = '';
+
+    if (!arr || arr.length === 0) return;
 
     const booksToDisplay = displayAll ? arr : [arr[arr.length - 1]];
 
@@ -95,6 +95,10 @@ function main() {
     return bookShelf.find(el => el.bookID === bookID);
   }
 
+  function findBookIndexByID(bookID) {
+    return bookShelf.findIndex(book => bookID === bookID);
+  }
+
   function toggleReadStatus(e) {
     const button = e.target.closest('.btn-status');
     if (!button) return;
@@ -108,6 +112,19 @@ function main() {
     }
   }
 
+  function deleteBook(e) {
+    const button = e.target.closest('.btn-delete-book');
+    if (!button) return;
+    const bookID = button.dataset.id;
+
+    const bookIndex = findBookIndexByID(bookID);
+
+    if (bookIndex !== -1) {
+      bookShelf.splice(bookIndex, 1);
+      updateDisplay(bookShelf);
+    }
+  }
+
   function attachHandlers() {
     modalBtns.map(el => {
       el.addEventListener('click', toggleModalVisibility);
@@ -116,6 +133,8 @@ function main() {
     bookContainerElement.addEventListener('click', function (e) {
       if (e.target.closest('.btn-status')) {
         toggleReadStatus(e);
+      } else if (e.target.closest('.btn-delete-book')) {
+        deleteBook(e);
       }
     });
   }
