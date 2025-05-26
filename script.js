@@ -85,11 +85,29 @@ function main() {
     return bookShelf.find(el => el.bookID === bookID);
   }
 
+  function toggleReadStatus(e) {
+    const button = e.target.closest('.btn-status');
+    if (!button) return;
+
+    const bookID = button.dataset.id;
+    const book = findBookByID(bookID);
+
+    if (book) {
+      book.status = book.status === 'Read' ? 'Unread' : 'Read';
+      updateDisplay(bookShelf);
+    }
+  }
+
   function attachHandlers() {
     modalBtns.map(el => {
       el.addEventListener('click', toggleModalVisibility);
     });
     insertBookBtn.addEventListener('click', insertBook);
+    bookContainerElement.addEventListener('click', function (e) {
+      if (e.target.closest('.btn-status')) {
+        toggleReadStatus(e);
+      }
+    });
   }
 
   // Function calls
